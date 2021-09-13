@@ -1,26 +1,38 @@
-
-// show all product in UI 
+// showing all product in UI 
 const showProducts = (products) => {
-  const allProducts = products.map((pd) => pd);
+  const allProducts = products.map((products) => products);
   for (const product of allProducts) {
     const image = product.image;
+
+    // creating product-items-div dynamically
     const div = document.createElement("div");
-    div.classList.add("product");
+    div.classList.add("col");
     div.innerHTML = `
-    <div class="single-product">
-      <div>
-        <img class="product-image" src=${image}></img>
+    <div class="card h-100">
+      <div id="items" class="card h-100">
+        <img height='250px' class="card-img-top" src=${image} alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${product.title}</h5>
+        </div>
+        <div>
+          <p class="card-text">Category: ${product.category}
+            <h4>Price: $ ${product.price}</h4>
+          <p><small>Avg. ${product.rating.rate} of ${product.rating.count} rating</small></p>
+          </p>
+        </div>
+        <div class="mb-3">
+            <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">Add to Cart</button>
+            <button id="details-btn" class="btn btn-danger">Details</button>
+        </div>
       </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
-      `;
+    </div>
+    `;
     document.getElementById("all-products").appendChild(div);
   }
 };
 
+
+//adding items to cart and calling functions
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
@@ -31,7 +43,6 @@ const addToCart = (id, price) => {
 
   document.getElementById("total-Products").innerText = count;
 };
-
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -74,7 +85,7 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 
-
+//loading products function
 const loadProducts = () => {
   const data = [
     {
@@ -320,4 +331,6 @@ const loadProducts = () => {
   ];
   showProducts(data);
 };
+
+// load function calling 
 loadProducts();
