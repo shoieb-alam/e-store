@@ -17,8 +17,8 @@ const showProducts = (products) => {
         <div>
           <p class="card-text">Category: ${product.category}
             <h4>Price: $ ${product.price}</h4>
-          <p><small>Avg. ${product.rating.rate} of ${product.rating.count} rating</small></p>
           </p>
+          <p><small>Avg. ${product.rating.rate} of ${product.rating.count} rating</small></p>
         </div>
         <div class="mb-3">
             <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">Add to Cart</button>
