@@ -31,11 +31,10 @@ const showProducts = (products) => {
   }
 };
 
-
 //adding items to cart and calling functions
 let count = 0;
 const addToCart = (id, price) => {
-  count = count + 1;
+  count += 1;
 
   updatePrice("price", price);
   updateTaxAndCharge();
@@ -85,8 +84,10 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 
-//loading products function
+//products loading function
 const loadProducts = () => {
+
+  // loading API data locally
   const data = [
     {
       "id": 1,
